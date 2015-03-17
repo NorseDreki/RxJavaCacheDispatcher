@@ -3,14 +3,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:0.10.1316"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:0.10.195"
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.6
 version = '0.1'
 
 repositories {
@@ -20,7 +20,7 @@ repositories {
 dependencies {
     compile 'io.reactivex:rxjava:1.0.4'
     compile 'com.google.code.gson:gson:2.2.2'
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.10.1316'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.10.195'
 
     testCompile 'io.reactivex:rxjava:1.0.4'
     testCompile 'com.google.code.gson:gson:2.2.2'

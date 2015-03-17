@@ -92,7 +92,7 @@ public class ObservableCacheDispatcherTest {
 
         ObservableCacheDispatcher cacheDispatcher = new ObservableCacheDispatcher(mockCache, mockDataMapper);
         Observable<SomeEntry> observable = cacheDispatcher.get(SOME_KEY, SomeEntry.class, mockLoader, mockExpiration);
-        SomeEntry result = (SomeEntry) observable.toBlocking().first();
+        SomeEntry result = observable.toBlocking().first();
 
         verify(mockLoader, never()).invoke();
         verify(mockCache).get(SOME_KEY);
@@ -137,7 +137,7 @@ public class ObservableCacheDispatcherTest {
             verify(spiedCache).put(eq(entry), any(ICache.Entry.class));
             //verify spied cache returned non-null entries
             assertThat(results, everyItem(is(entry)));
-            //assertThat(results, hasSize(NUM_THREADS));
+            assertThat(results.size(), is(NUM_THREADS));
         }
     }
 
