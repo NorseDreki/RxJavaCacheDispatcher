@@ -7,6 +7,6 @@ import java.util.Date
  */
 trait ICacheDispatcher {
 
-    fun <T> get(cacheKey: String, clazz: Class<T>, loader: ()-> T, expiration: Date): T
+    fun <T> get(key: String, clazz: Class<T>, loader: ()-> T, expiration: Date): rx.Observable<T>
 
 }
