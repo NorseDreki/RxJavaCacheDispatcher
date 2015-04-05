@@ -9,9 +9,41 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'maven'
+
+configure(install.repositories.mavenInstaller) {
+    pom.project {
+        groupId 'com.github.upelsin'
+        artifactId 'rxjava-cache-dispatcher'
+        inceptionYear '2015'
+        packaging 'jar'
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
 
 sourceCompatibility = 1.6
-version = '0.1'
+version = '0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -19,11 +51,9 @@ repositories {
 
 dependencies {
     compile 'io.reactivex:rxjava:1.0.4'
-    compile 'com.google.code.gson:gson:2.2.2'
+    compile 'com.google.code.gson:gson:2.3'
     compile 'org.jetbrains.kotlin:kotlin-stdlib:0.10.195'
 
-    //testCompile 'io.reactivex:rxjava:1.0.4'
-    //testCompile 'com.google.code.gson:gson:2.2.2'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.mockito:mockito-core:1.9.5"
 }
